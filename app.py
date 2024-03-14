@@ -1,11 +1,36 @@
+import base64
 import pandas as pd
 import numpy as np
 import pickle as pk
 import streamlit as st
 
-model = pk.load(open('model.pkl','rb'))
+from streamlit_lottie import st_lottie
+st.set_page_config(page_title="Car Prediction",page_icon="img/icon.png",layout="wide")
+import requests
 
-st.header("Car Price Prediction By Vishwam Solanki")
+model = pk.load(open('model.pkl','rb'))
+with st.container():
+    st.subheader("Hi My name is Vishwam Solanki  ")
+    st.title("Car Price Pridiction App")
+    st.write("Choose the Different Factors and Pidict the Price of the your dream car")
+def sidebar_bg(side_bg):
+
+   side_bg_ext = 'jpg'
+
+   st.markdown(
+      f"""
+      <style>
+      [data-testid="AppViewContainer"] > div:first-child {{
+          background: url(data:image/{side_bg_ext};base64,{base64.b64encode(open(side_bg, "rb").read()).decode()});
+      }}
+      </style>
+      """,
+      unsafe_allow_html=True,
+      )
+# side_bg = 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1966&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+side_bg = 'D:\VISHWAM PROGRAM\Data science\Car prediction\Model2.0\img1.jpg'
+sidebar_bg(side_bg)
+
 
 db = pd.read_csv('Cardetails.csv')
 # get brand Name
